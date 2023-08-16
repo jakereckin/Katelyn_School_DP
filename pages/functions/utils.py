@@ -14,6 +14,7 @@ def get_students(r_1_file, r_2_file):
 
 def create_db():
     db_file = os.path.dirname(os.path.abspath(__file__)) + '\\kmo13.db'
+    print(db_file)
     conn = sql.connect(db_file, check_same_thread=False)
     return conn
 
