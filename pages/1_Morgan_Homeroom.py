@@ -11,8 +11,6 @@ from streamlit_extras.switch_page_button import switch_page
 st.set_page_config('Morgan Homeroom')
 st.sidebar.header('Morgan Homeroom')
 conn = ut.create_db()
-print(conn)
-print('___HERE___')
 morgan_students = ut.select_students_morgan(conn)
 all_results = ut.select_full_results(conn)
 all_results_morgan = all_results[all_results['HOMEROOM'] == 'Morgan']
