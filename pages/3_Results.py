@@ -17,8 +17,6 @@ conn = ut.create_db()
 all = ut.select_full_results(conn)
 counts = ut.select_counts(conn)
 
-print(all)
-print(counts)
 
 names = list(counts['NAME'].unique())
 
@@ -27,6 +25,5 @@ names = list(counts['NAME'].unique())
 _counts= counts[counts['NAME']==name_box]
 _all = all[all['NAME']==name_box]
 st.dataframe(_all)
-st.dataframe(_counts)
 fig = px.bar(_counts, x='WEEK_START', y='HW_NOT_DONE_COUNT')
 st.plotly_chart(fig, use_container_width=True)
