@@ -13,7 +13,8 @@ def get_students(r_1_file, r_2_file):
     return full_students, insert
 
 def create_db():
-    db_file = os.path.dirname(os.path.abspath(__file__)) + '\\kmo13.db'
+    #db_file = os.path.dirname(os.path.abspath(__file__)) + '\\kmo13.db'
+    db_file = 'Katelyn_School_DP/kmo13.db'
     conn = sql.connect(db_file, check_same_thread=False)
     return conn
 
