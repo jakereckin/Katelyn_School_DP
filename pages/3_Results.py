@@ -25,5 +25,17 @@ names = list(counts['NAME'].unique())
 _counts= counts[counts['NAME']==name_box]
 _all = all[all['NAME']==name_box]
 st.dataframe(_all, hide_index=True)
-fig = px.bar(_counts, x='WEEK_START', y='HW_NOT_DONE_COUNT')
+fig = px.bar(_counts, 
+             x='WEEK_START', 
+             y='HW_NOT_DONE_COUNT',
+             title=f'Homework Assignmnets Not Done for {name_box}')
+fig.update_layout(xaxis_title='Week',
+                  yaxis_title='Homework Not Done')
+fig2 = px.bar(counts, 
+             x='WEEK_START', 
+             y='HW_NOT_DONE_COUNT',
+             title='Homework Assignmnets Not Done for All Students')
+fig2.update_layout(xaxis_title='Week',
+                  yaxis_title='Homework Not Done')
 st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig2, use_container_width=True)
