@@ -24,6 +24,6 @@ name_box = st.selectbox('Choose student', names)
 names = list(counts['NAME'].unique())
 _counts= counts[counts['NAME']==name_box]
 _all = all[all['NAME']==name_box]
-st.dataframe(_all)
+st.dataframe(_all, hide_index=True)
 fig = px.bar(_counts, x='WEEK_START', y='HW_NOT_DONE_COUNT')
 st.plotly_chart(fig, use_container_width=True)
