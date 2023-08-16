@@ -139,4 +139,5 @@ def select_counts(conn):
     df['HW_DATE'] = pd.to_datetime(df['HW_DATE'])
     df['WEEK_START'] = df['HW_DATE'].dt.to_period('W').apply(lambda r: r.start_time)
     df_group = df.groupby(by=['NAME', 'WEEK_START'], as_index=False)['HW_NOT_DONE_COUNT'].sum()
+    print(df_group)
     return df_group
