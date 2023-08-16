@@ -25,13 +25,13 @@ names = list(counts['NAME'].unique())
 _counts= counts[counts['NAME']==name_box]
 _all = all[all['NAME']==name_box]
 st.dataframe(_all, hide_index=True, use_container_width=True)
-fig = px.bar(count_all, 
+fig = px.bar(_counts, 
              x='WEEK_START', 
              y='HW_NOT_DONE_COUNT',
              title=f'Homework Assignmnets Not Done for {name_box}')
 fig.update_layout(xaxis_title='Week',
                   yaxis_title='Homework Not Done',)
-fig2 = px.bar(counts, 
+fig2 = px.bar(count_all, 
              x='WEEK_START', 
              y='HW_NOT_DONE_COUNT',
              title='Homework Assignmnets Not Done for All Students')
