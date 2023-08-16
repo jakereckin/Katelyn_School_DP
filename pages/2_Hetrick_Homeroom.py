@@ -2,7 +2,9 @@ import streamlit as st
 import datetime as dt
 import sys
 import time
-from pages.functions import utils as ut
+import os
+sys.path.insert(1, os.path.dirname(os.path.abspath(__file__)))
+from functions import utils as ut
 from streamlit_extras.switch_page_button import switch_page
 
 st.set_page_config('Hetrick Homeroom')
