@@ -12,6 +12,7 @@ st.set_page_config('Morgan Homeroom')
 st.sidebar.header('Morgan Homeroom')
 conn = ut.create_db()
 print(conn)
+print('___HERE___')
 morgan_students = ut.select_students_morgan(conn)
 morgan_students['DATE'] = dt.datetime.today().strftime('%m/%d/%Y')
 hw_cats = ['YES', 'NO', 'ABSENT']
