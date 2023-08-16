@@ -15,7 +15,7 @@ st.sidebar.header('Results')
 
 conn = ut.create_db()
 all = ut.select_full_results(conn)
-counts = ut.select_counts(conn)
+counts, count_all = ut.select_counts(conn)
 
 
 names = list(counts['NAME'].unique())
@@ -24,13 +24,13 @@ name_box = st.selectbox('Choose student', names)
 names = list(counts['NAME'].unique())
 _counts= counts[counts['NAME']==name_box]
 _all = all[all['NAME']==name_box]
-st.dataframe(_all, hide_index=True)
-fig = px.bar(_counts, 
+st.dataframe(_all, hide_index=True, use_container_width=True)
+fig = px.bar(count_all, 
              x='WEEK_START', 
              y='HW_NOT_DONE_COUNT',
              title=f'Homework Assignmnets Not Done for {name_box}')
 fig.update_layout(xaxis_title='Week',
-                  yaxis_title='Homework Not Done')
+                  yaxis_title='Homework Not Done',)
 fig2 = px.bar(counts, 
              x='WEEK_START', 
              y='HW_NOT_DONE_COUNT',
