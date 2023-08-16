@@ -5,7 +5,6 @@ import time
 import pandas as pd
 import os
 sys.path.insert(1, os.path.dirname(os.path.abspath(__file__)))
-print(sys.path)
 from functions import utils as ut
 from streamlit_extras.switch_page_button import switch_page
 import plotly.express as px
