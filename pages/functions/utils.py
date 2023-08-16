@@ -14,7 +14,6 @@ def get_students(r_1_file, r_2_file):
 
 def create_db():
     db_file = os.path.dirname(os.path.abspath(__file__)) + '\\kmo13.db'
-    print(db_file)
     conn = sql.connect(db_file, check_same_thread=False)
     return conn
 
@@ -140,5 +139,4 @@ def select_counts(conn):
     df['HW_DATE'] = pd.to_datetime(df['HW_DATE'])
     df['WEEK_START'] = df['HW_DATE'].dt.to_period('W').apply(lambda r: r.start_time)
     df_group = df.groupby(by=['NAME', 'WEEK_START'], as_index=False)['HW_NOT_DONE_COUNT'].sum()
-    print(df_group)
     return df_group
