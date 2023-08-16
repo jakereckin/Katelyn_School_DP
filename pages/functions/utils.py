@@ -15,7 +15,7 @@ def get_students(r_1_file, r_2_file):
 def create_db():
     #db_file = os.path.dirname(os.path.abspath(__file__)) + '\\kmo13.db'
     db_file = 'https://github.com/jakereckin/Katelyn_School_DP/blob/97eb316175689a0ac60a9d2edc776e9b620915a8/kmo13.db'
-    conn = sql.connect(db_file, check_same_thread=False)
+    conn = sql.connect('kmo13.db', check_same_thread=False)
     return conn
 
 def close_db(conn):
