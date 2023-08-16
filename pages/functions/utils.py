@@ -13,9 +13,8 @@ def get_students(r_1_file, r_2_file):
     return full_students, insert
 
 def create_db():
-    #db_file = os.path.dirname(os.path.abspath(__file__)) + '\\kmo13.db'
-    db_file = 'https://github.com/jakereckin/Katelyn_School_DP/blob/97eb316175689a0ac60a9d2edc776e9b620915a8/kmo13.db'
     conn = sql.connect('kmo13.db', check_same_thread=False)
+    #conn = sql.connect(r'C:\Users\Jake\Documents\GitHub\Katelyn_School_DP\kmo13.db', check_same_thread=False)
     return conn
 
 def close_db(conn):
@@ -116,7 +115,8 @@ def select_full_results(conn):
     SELECT_RESULTS = """
     SELECT STUDENT.NAME,
            HW.HW_DATE,
-           HW.HW_DONE
+           HW.HW_DONE,
+           HOMEROOM
        FROM STUDENT 
        INNER JOIN HW 
        ON HW.NAME = STUDENT.NAME 
@@ -137,7 +137,7 @@ def select_counts(conn):
                 HW.HW_DATE
     """
     df = pd.read_sql_query(SELECT_RESULTS, conn)
-    df['HW_DATE'] = pd.to_datetime(df['HW_DATE'])
+    df['HW_DATE'] = pd.to_datetime(df['HW_DATE'], errors='coerce')
     df['WEEK_START'] = df['HW_DATE'].dt.to_period('W').apply(lambda r: r.start_time)
     df_group = df.groupby(by=['NAME', 'WEEK_START'], as_index=False)['HW_NOT_DONE_COUNT'].sum()
     return df_group
