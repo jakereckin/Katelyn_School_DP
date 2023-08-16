@@ -31,8 +31,7 @@ else:
                                             'DATE': 'Date', 
                                             'HW_DONE': st.column_config.SelectboxColumn(label='HW_DONE', 
                                                                                         options=['YES', 'NO', 'ABSENT'])}, 
-                            disabled=['NAME', 'DATE'],
-                            use_container_width=True
+                            disabled=['NAME', 'DATE']
     )
     st.session_state.df = hetrick_students
     submit = st.button('Submit')

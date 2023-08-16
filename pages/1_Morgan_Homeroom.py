@@ -36,7 +36,6 @@ else:
                                             'HW_DONE': st.column_config.SelectboxColumn(label='HW_DONE', 
                                                                                         options=['YES', 'NO', 'ABSENT'])},
                             disabled=['NAME', 'DATE'],
-                            use_container_width=True
     )
     st.session_state.df = morgan_students
     submit = st.button('Submit')
