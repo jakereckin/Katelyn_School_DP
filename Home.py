@@ -9,8 +9,8 @@ st.set_page_config('Home')
 
 st.header("Welcome to Miss Morgan's Website!")
 
-#image = Image.open('KMO_PIC.jpg')
-#st.image(image)
+image = Image.open('KMO_PIC.jpg')
+st.image(image)
 
 #conn = ut.create_db()
 #ut.drop_student(conn)
