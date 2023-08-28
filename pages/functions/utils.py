@@ -13,8 +13,10 @@ def get_students(r_1_file, r_2_file):
     return full_students, insert
 
 def create_db():
-    conn = sql.connect('kmo13.db', check_same_thread=False)
-    #conn = sql.connect(r'C:\Users\Jake\Documents\GitHub\Katelyn_School_DP\kmo13.db', check_same_thread=False)
+    if os.path.exists(r'C:\Users\Jake\Documents\GitHub\Katelyn_School_DP'):
+        conn = sql.connect(r'C:\Users\Jake\Documents\GitHub\Katelyn_School_DP\kmo13.db', check_same_thread=False)
+    else:
+        conn = sql.connect('kmo13.db', check_same_thread=False)
     return conn
 
 def close_db(conn):
