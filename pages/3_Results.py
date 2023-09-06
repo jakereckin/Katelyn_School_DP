@@ -27,9 +27,14 @@ name_box = st.selectbox('Choose student', names)
 names = list(counts['NAME'].unique())
 _counts= counts[counts['NAME']==name_box]
 _all = all[all['NAME']==name_box]
-st.download_button(label='Download data as CSV',
+st.download_button(label='Download weekly data as CSV',
                    data=convert_df_to_csv(counts),
-                   file_name='Underlying_data.csv',
+                   file_name='Weekly_Data.csv',
+                   mime='text/csv'
+)
+st.download_button(label='Download all data as CSV',
+                   data=convert_df_to_csv(all),
+                   file_name='All_Data.csv',
                    mime='text/csv'
 )
 st.dataframe(_all, hide_index=True, use_container_width=True)
