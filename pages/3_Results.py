@@ -17,6 +17,9 @@ conn = ut.create_db()
 all = ut.select_full_results(conn)
 counts, count_all = ut.select_counts(conn)
 
+@st.cache_data
+def convert_df_to_csv(df):
+    return df.to_csv(index=False).encode('utf-8')
 
 names = list(counts['NAME'].unique())
 
@@ -24,6 +27,11 @@ name_box = st.selectbox('Choose student', names)
 names = list(counts['NAME'].unique())
 _counts= counts[counts['NAME']==name_box]
 _all = all[all['NAME']==name_box]
+st.download_button(label='Download data as CSV',
+                   data=convert_df_to_csv(counts),
+                   file_name='Underlying_data.csv',
+                   mime='text/csv'
+)
 st.dataframe(_all, hide_index=True, use_container_width=True)
 fig = px.bar(_counts, 
              x='WEEK_START', 
