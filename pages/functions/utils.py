@@ -1,6 +1,11 @@
 import pandas as pd
 import sqlite3 as sql
 import os
+import smtplib
+import ssl 
+from email.mime.text import MIMEText
+from email.mime.application import MIMEApplication
+from email.mime.multipart import MIMEMultipart
 
 def get_students(r_1_file, r_2_file):
     r_1 = pd.read_csv(r_1_file, index_col=False)
@@ -144,3 +149,20 @@ def select_counts(conn):
     df_group = df.groupby(by=['NAME', 'WEEK_START'], as_index=False)['HW_NOT_DONE_COUNT'].sum()
     df_all = df.groupby(by=['WEEK_START'], as_index=False)['HW_NOT_DONE_COUNT'].sum()
     return df_group, df_all
+
+def my_email(password, data):
+    msg = MIMEMultipart()
+    msg['From'] = 'jjrekn@gmail.com'
+    msg['To'] = 'jjrekn@gmail.com'
+    msg['Subject'] = 'Homework Submission'
+    attachment = MIMEApplication(data.to_csv(index=False))
+    attachment["Content-Disposition"] = 'attachment; filename=" {}"'.format("Homework.csv")
+    msg.attach(attachment)
+
+    with smtplib.SMTP('smtp.gmail.com', 587) as e:
+        e.ehlo()
+        e.starttls(context=ssl.create_default_context())
+        print(password.strip())
+        e.login('jjrekn@gmail.com', password=password.strip())
+        e.sendmail('jjrekn@gmail.com', 'jjrekn@gmail.com', msg.as_string())
+    return None
