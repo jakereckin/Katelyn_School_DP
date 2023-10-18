@@ -135,11 +135,15 @@ def select_counts(conn):
     SELECT_RESULTS = """
         SELECT STUDENT.NAME,
            HW.HW_DATE,
-           COUNT(HW.HW_DONE) AS HW_NOT_DONE_COUNT
+           SUM(CASE
+                 WHEN HW.HW_DONE = 'NO'
+                   THEN 1
+                 ELSE 0
+               END) AS HW_NOT_DONE_COUNT
        FROM STUDENT 
        INNER JOIN HW 
        ON HW.NAME = STUDENT.NAME 
-       WHERE HW.HW_DONE = 'NO'
+       --WHERE HW.HW_DONE = 'NO'
        GROUP BY STUDENT.NAME,
                 HW.HW_DATE
     """
