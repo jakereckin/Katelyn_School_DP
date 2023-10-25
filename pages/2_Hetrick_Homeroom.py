@@ -16,7 +16,6 @@ all_results_hetrick = all_results[all_results['HOMEROOM'] == 'Hetrick']
 if dt.datetime.today().strftime('%m/%d/%Y') in all_results_hetrick['HW_DATE'].unique():
     st.header('Already Submitted Today!')
 else:
-    password = st.text_input('Enter Email Password (Miss Morgan Only)')
     hetrick_students['DATE'] = dt.datetime.today().strftime('%m/%d/%Y')
     hw_cats = ['YES', 'NO', 'ABSENT']
     hetrick_students['HW_DONE'] = 'YES'
@@ -47,5 +46,5 @@ else:
             ut.insert_hw(conn, row)
         time.sleep(3)
         results = ut.select_full_results(conn)
-        ut.my_email(password, results)
+        ut.my_email(st.secrets['password'], results)
         switch_page('Home')
