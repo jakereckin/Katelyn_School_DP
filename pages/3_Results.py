@@ -29,16 +29,6 @@ _counts= counts[counts['NAME']==name_box]
 _counts['WEEK_START'] = _counts['WEEK_START'].dt.strftime('%m/%d/%Y')
 count_all['WEEK_START'] = count_all['WEEK_START'].dt.strftime('%m/%d/%Y')
 _all = all[all['NAME']==name_box]
-st.download_button(label='Download weekly data as CSV',
-                   data=convert_df_to_csv(counts),
-                   file_name='Weekly_Data.csv',
-                   mime='text/csv'
-)
-st.download_button(label='Download all data as CSV',
-                   data=convert_df_to_csv(all),
-                   file_name='All_Data.csv',
-                   mime='text/csv'
-)
 st.dataframe(_all, hide_index=True, use_container_width=True)
 fig = px.bar(_counts, 
              x='WEEK_START', 
