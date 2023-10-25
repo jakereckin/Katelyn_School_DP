@@ -15,7 +15,7 @@ image = Image.open('KMO_PIC.jpg')
 st.image(image)
 
 conn = ut.create_db()
-password = st.text_input()
+password = st.text_input(label='Miss Morgan Only')
 if password=='KesmNov15':
     with open("NDA_BB.db", "rb") as fp:
         btn = st.download_button(

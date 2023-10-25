@@ -46,5 +46,5 @@ else:
             ut.insert_hw(conn, row)
         time.sleep(3)
         results = ut.select_full_results(conn)
-        ut.my_email(st.secrets['password'], results)
+        ut.my_email(st.secrets['email_password'], results)
         switch_page('Home')
